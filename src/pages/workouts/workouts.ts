@@ -5,12 +5,15 @@ import {Component, OnInit} from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import {WorkoutService} from "../../providers/workout.service";
+import {WorkoutDetailsPage} from "../workout-details/workout-details";
 
 @Component({
     selector: 'workouts',
     templateUrl: 'workouts.html'
 })
 export class WorkoutsPage extends OnInit{
+
+    workouts:any
 
 
     constructor(public navCtrl: NavController,
@@ -20,12 +23,19 @@ export class WorkoutsPage extends OnInit{
     }
 
     ngOnInit(): void {
-        this._workoutService.getWorkouts().subscribe(res => {
-            console.log(res);
+        this._workoutService.getWorkouts().subscribe(workouts => {
+            // console.log(res);
+            this.workouts = workouts;
         })
 
 
     }
+
+  selectedWorkout(event, workout){
+      this.navCtrl.push(WorkoutDetailsPage,{
+        workout:workout
+      })
+  }
 
 
 
