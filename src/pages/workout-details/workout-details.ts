@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {WorkoutService} from "../../providers/workout.service";
+import {WorkoutsPage} from "../workouts/workouts";
 
 /*
   Generated class for the WorkoutDetails page.
@@ -15,6 +16,7 @@ import {WorkoutService} from "../../providers/workout.service";
 export class WorkoutDetailsPage {
 
   public workout:any;
+  public result:any;
 
 
   constructor(public navCtrl: NavController,
@@ -25,6 +27,14 @@ export class WorkoutDetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkoutDetailsPage');
+  }
+
+  deleteWorkout(workoutId){
+    this._workoutService.deleteWorkout(workoutId).subscribe(data => {
+      this.result = data;
+      }
+    );
+    this.navCtrl.push(WorkoutsPage);
   }
 
 }

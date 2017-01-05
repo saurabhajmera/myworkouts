@@ -51,4 +51,8 @@ export class WorkoutService {
     console.error(errMsg);
     return Promise.reject(errMsg);
   }
+
+  deleteWorkout(workoutId){
+    return this.http.delete(this.workoutsUrl+"/"+workoutId+"?apiKey="+this.apiKey).map(res=>res.json());
+  }
 }

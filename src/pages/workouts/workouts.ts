@@ -26,9 +26,16 @@ export class WorkoutsPage extends OnInit{
         this._workoutService.getWorkouts().subscribe(workouts => {
             // console.log(res);
             this.workouts = workouts;
-        })
+        });
 
 
+    }
+
+    ionViewWillEnter(){
+      this._workoutService.getWorkouts().subscribe(workouts => {
+        // console.log(res);
+        this.workouts = workouts;
+      });
     }
 
   selectedWorkout(event, workout){
